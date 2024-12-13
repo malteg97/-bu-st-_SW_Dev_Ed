@@ -2,8 +2,8 @@
 # codes make you happy
 
 import event, time, cyberpi
-
+x='Hallo'
 @event.start
 def on_start():
-    cyberpi.console.println("Hallo!")
+    cyberpi.console.println(x)
 
