@@ -8,3 +8,24 @@ def on_start():
     cyberpi.console.println("Hallo Philipp")
 
     cyberpi.console.println("Hallo Malte!")
+
+my_10 = 0
+Test = 0
+
+@event.is_waveleft
+def on_is_waveleft():
+    global my_10, Test
+    while not Test > 5:
+      cyberpi.led.on(255, 187, 0, "all")
+      time.sleep(0.25)
+      cyberpi.led.on(0, 0, 0, "all")
+      my_10 = my_10 + 1
+
+@event.is_waveright
+def on_is_waveright():
+    global my_10, Test
+    while not Test > 5:
+      cyberpi.led.on(255, 187, 0, "all")
+      time.sleep(0.25)
+      cyberpi.led.on(0, 0, 0, "all")
+      my_10 = my_10 + 1
