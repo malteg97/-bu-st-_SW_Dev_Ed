@@ -7,10 +7,13 @@ import event, time, cyberpi, mbot2, mbuild
 def on_start():
     cyberpi.console.println("Hallo Philipp!")
     cyberpi.console.print("Bitte  bot auf Boden und Taste A drücken!")
-    if cyberpi.controller.is_press('a'):
+
+@event.is_press('a')
+def is_btn_press():
+    if cyberpi.controller.is_press('any_button'):
       mbot2.backward(50)
-      cyberpi.led.show('green green green green green')
+      cyberpi.led.show('red orange yellow green cyan')
       if mbuild.ultrasonic2.get(1) < 10:
         mbot2.forward(20, 3)
-        cyberpi.led.show('red red red red red')
+        cyberpi.led.show('red orange yellow green cyan')
         mbot2.turn(-90)
