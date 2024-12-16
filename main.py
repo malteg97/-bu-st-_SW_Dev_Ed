@@ -12,9 +12,9 @@ def on_start():
 def is_btn_press():
     while True:
       while not mbuild.ultrasonic2.get(1) < 10:
+          mbot2.straight(-15)
         mbot2.forward(50)
       cyberpi.audio.play_music(60, 1)
-      mbot2.straight(-15)
       mbot2.turn(-90)
       
 
@@ -25,14 +25,16 @@ def on_is_waveleft():
       cyberpi.led.on(255, 187, 0, "all")
       time.sleep(0.25)
       cyberpi.led.on(0, 0, 0, "all")
-      my_10 = my_10 + 1
+      Test = Test + 1
 
 @event.is_waveright
 def on_is_waveright():
     Test = 0
     while not Test > 5:
+        cyberpi.console.print('Blinken')
+        cyberpi.led.set_bri(100)
       cyberpi.led.on(255, 187, 0, "all")
       time.sleep(0.25)
       cyberpi.led.on(0, 0, 0, "all")
-      my_10 = my_10 + 1
+      Test = Test + 1
 
