@@ -14,6 +14,6 @@ def is_btn_press():
       while not mbuild.ultrasonic2.get(1) < 10:
         mbot2.forward(50)
 
-      cyberpi.audio.play_music(60, 1)
-      mbot2.straight(-15)
+      mbot2.straight(15)
       mbot2.turn(-90)
+
