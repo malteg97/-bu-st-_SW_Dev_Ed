@@ -3,7 +3,9 @@
 
 import event, time, cyberpi
 x='Hallo'
+y='Malte'
 @event.start
 def on_start():
     cyberpi.console.println(x)
+    cyberpi.console.println(y)
 
