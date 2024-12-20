@@ -7,7 +7,7 @@ def test_code_contains_specific_lines():
     
     # Definiere die Zeilen, nach denen gesucht werden soll
     expected_lines = [
-        "import cyberpi",
+        "import event, time, cyberpi",
         "x = 'Hallo'",
         "cyberpi.console.println(x)"
     ]
