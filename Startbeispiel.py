@@ -13,9 +13,9 @@ def is_btn_press():
 @event.is_anticlockwise
 def on_is_anticlockwise():
     for count in range(3):
-      cyberpi.led.on(208, 170, 1, 5)
+      cyberpi.led.on(208, 170, 1, 1)
       time.sleep(1)
-      cyberpi.led.on(0, 0, 0, 5)
+      cyberpi.led.on(0, 0, 0, 1)
       cyberpi.led.off("all")
 
 @event.start
@@ -27,7 +27,8 @@ def on_start():
 @event.is_clockwise
 def on_is_clockwise1():
     for count2 in range(3):
-      cyberpi.led.on(208, 170, 1, 1)
-      time.sleep(1)
-      cyberpi.led.on(0, 0, 0, 1)
+      cyberpi.led.off("all")
+      cyberpi.led.on(208, 170, 1, 5)
+      time.sleep(0.5)
+      cyberpi.led.on(0, 0, 0, 5)
       cyberpi.led.off("all")
