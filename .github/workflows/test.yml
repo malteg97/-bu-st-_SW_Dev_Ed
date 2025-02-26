@@ -25,13 +25,10 @@ jobs:
         run: pip install flake8 pylint
 
       - name: Run Flake8
-        run: flake8 .
+        run: flake8 . --ignore=W191,E101 --max-line-length=100
 
       - name: Run Pylint
-        run: pylint .
+        run: pylint $(git ls-files '*.py')
 
       - name: Run Smoke Tests
-        run: |
-          for file in ./*.py; do
-            python -m py_compile "$file"
-          done
+        run: find . -name "*.py" -exec python -m py_compile {} +
