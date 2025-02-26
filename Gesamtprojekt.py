@@ -74,5 +74,6 @@ def on_is_clockwise1():
       time.sleep(0.2)
       cyberpi.led.on(0, 0, 0, 5)
       time.sleep(0.2)
-
+      
 # Hier wird ein Testkommentar eingefügt
+
