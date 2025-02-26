@@ -25,13 +25,13 @@ jobs:
         run: pip install flake8 pylint
 
       - name: Run Flake8
-        run: flake8 generated_python/
+        run: flake8 .
 
       - name: Run Pylint
-        run: pylint generated_python/
+        run: pylint .
 
       - name: Run Smoke Tests
         run: |
-          for file in generated_python/*.py; do
+          for file in ./*.py; do
             python -m py_compile "$file"
           done
