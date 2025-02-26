@@ -2,11 +2,12 @@
 # codes make you happy
 
 import event, time, cyberpi, mbot2, mbuild, random
-import time
+
 # initialize variables
 Geschwindigkeit = 0
 Drehwinkel = 0
 Zufall = 0
+
 
 @event.start
 def on_start():
@@ -34,6 +35,7 @@ def on_start():
     cyberpi.console.clear()
     cyberpi.console.println("Zum Starten Cursor nach vorne ziehen!")
 
+
 @event.is_press('up')
 def is_joy_press():
     global Geschwindigkeit, Drehwinkel, Zufall
@@ -51,11 +53,12 @@ def is_joy_press():
           mbot2.forward(Geschwindigkeit, 2)
           mbot2.turn(-90)
 
-      if (mbuild.quad_rgb_sensor.is_color("white","R2",1)):
+      if (mbuild.quad_rgb_sensor.is_color("white", "R2", 1)):
         mbot2.turn(-90)
 
-      if (mbuild.quad_rgb_sensor.is_color("white","L2",1)):
+      if (mbuild.quad_rgb_sensor.is_color("white", "L2", 1)):
         mbot2.turn(90)
+
 
 @event.is_anticlockwise
 def on_is_anticlockwise():
@@ -66,6 +69,7 @@ def on_is_anticlockwise():
       cyberpi.led.on(0, 0, 0, 1)
       time.sleep(0.2)
 
+
 @event.is_clockwise
 def on_is_clockwise1():
     global Geschwindigkeit, Drehwinkel, Zufall
@@ -74,5 +78,3 @@ def on_is_clockwise1():
       time.sleep(0.2)
       cyberpi.led.on(0, 0, 0, 5)
       time.sleep(0.2)
-
-# Test Kommentar
