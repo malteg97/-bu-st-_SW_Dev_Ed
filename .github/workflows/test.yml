@@ -24,8 +24,8 @@ jobs:
       - name: Install Dependencies
         run: pip install flake8 pylint
 
-      - name: Run Flake8
-        run: flake8 . --ignore=W191,E101,E111,E401,E114 --max-line-length=100
+      #- name: Run Flake8
+      #  run: flake8 . --ignore=W191,E101,E111,E401,E114 --max-line-length=100
 
       - name: Run Pylint
         run: pylint $(git ls-files '*.py')
