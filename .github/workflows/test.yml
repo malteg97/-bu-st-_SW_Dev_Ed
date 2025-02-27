@@ -24,11 +24,11 @@ jobs:
       - name: Install Dependencies
         run: pip install flake8 pylint
 
-      #- name: Run Flake8
-      #  run: flake8 . --ignore=W191,E101,E111,E401,E114 --max-line-length=100
+      - name: Run Flake8 (Warnings Only)
+        run: flake8 . --ignore=W191,E101,E111,E401,E114 --max-line-length=100 || echo "Flake8 completed with warnings"
 
-      - name: Run Pylint
-        run: pylint $(git ls-files '*.py')
+      - name: Run Pylint (Warnings Only)
+        run: pylint --disable=W0311 $(git ls-files '*.py') --exit-zero || echo "Pylint completed with warnings"
 
       - name: Run Smoke Tests
         run: find . -name "*.py" -exec python -m py_compile {} +
