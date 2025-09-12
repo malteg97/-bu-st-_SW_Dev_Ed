@@ -11,14 +11,38 @@ def on_start():
     cyberpi.console.print("Zum Starten des Programmes Knopf A druecken")
    
 
+import event, time, cyberpi, mbot2
+# initialize variables
+Geschwindigkeit = 0
+ 
+@event.start
+def on_start():
+    global Geschwindigkeit
+    cyberpi.console.println("Taste A = langsam (25 U/min)")
+    cyberpi.console.print("Taste B = schnell (75 U/min)")
+    while not (cyberpi.controller.is_press('a') or cyberpi.controller.is_press('b')):
+      # DO SOMETHING
+      pass
+ 
+    if cyberpi.controller.is_press('a'):
+      mbot2.forward(25)
+ 
+    else:
+      mbot2.forward(75)
+ 
 @event.is_press('a')
 def is_btn_press():
-    mbot2.forward(50, 3)
-    mbot2.turn(-90)
-    mbot2.forward(50, 3)
-    mbot2.turn(90)
-    mbot2.forward(50, 3)
-    
+    global Geschwindigkeit
+    while True:
+      mbot2.forward(50)
+      if mbuild.ultrasonic2.get(1) < 10:
+        mbot2.turn(-90)
+        mbot2.forward(25, 1)
+        mbot2.turn(90)
+        if mbuild.ultrasonic2.get(1) < 10:
+          mbot2.turn(-90)
+          mbot2.forward(25, 1)
+          mbot2.turn(90)
 
 import event, time, cyberpi
 import time
