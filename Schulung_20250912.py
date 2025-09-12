@@ -20,6 +20,24 @@ def is_btn_press():
     mbot2.forward(50, 3)
     
 
+import event, time, cyberpi
+import time
+
+@event.is_clockwise
+def on_is_clockwise():
+    for count in range(3):
+      cyberpi.led.on(255, 149, 2, 5)
+      time.sleep(0.5)
+      cyberpi.led.on(0, 0, 0, 5)
+      time.sleep(0.5)
+
+@event.is_anticlockwise
+def on_is_anticlockwise1():
+    for count2 in range(3):
+      cyberpi.led.on(255, 149, 2, 1)
+      time.sleep(0.5)
+      cyberpi.led.on(0, 0, 0, 1)
+      time.sleep(0.5)
 # Hier erzeugen wir einen merge konflikt
 
 # hier ist der zweite kommentar
