@@ -4,6 +4,13 @@
 
 import event, time, cyberpi, mbot2
 
+@event.start
+def on_start():
+    cyberpi.console.println("Willkommen!")
+    cyberpi.display.show_label(cyberpi.get_battery(), 12, "top_right", index= 0)
+    cyberpi.console.print("Zum Starten des Programmes Knopf A druecken")
+   
+
 @event.is_press('a')
 def is_btn_press():
     mbot2.forward(50, 3)
@@ -11,6 +18,8 @@ def is_btn_press():
     mbot2.forward(50, 3)
     mbot2.turn(90)
     mbot2.forward(50, 3)
+    
+
 # Hier erzeugen wir einen merge konflikt
 
 # hier ist der zweite kommentar
