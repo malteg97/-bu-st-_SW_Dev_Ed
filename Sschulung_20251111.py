@@ -1,9 +1,11 @@
 # Startkommentar
 
-# ein anderer kommentar
-print("hier ist ein konflikt")
+import event, time, cyberpi, mbot2
 
-
-#testkommentar
-print("Hello, World!")
-print("Dies ist ein Testskript.")
+@event.start
+def on_start():
+    mbot2.forward(50, 3)
+    mbot2.turn(-90)
+    mbot2.forward(50, 3)
+    mbot2.turn(90)
+    mbot2.forward(50, 1)
