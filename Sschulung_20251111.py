@@ -2,7 +2,7 @@
 # codes make you happy
 
 import event, time, cyberpi, mbot2
-# initialize variables
+
 Batterie = 0
 speed = 0
 flash_duration = 0
@@ -42,3 +42,26 @@ def on_start():
     flash_duration = 0.5
     active = 0
     cyberpi.console.println("Druecke den Joystick ein um zu starten.")
+
+
+@event.is_anticlockwise
+def on_is_anticlockwise():
+    global flash_duration
+    cyberpi.led.off("all")
+    for count in range(3):
+      cyberpi.led.on(255, 187, 2, 1)
+      time.sleep(flash_duration)
+      cyberpi.led.on(0, 0, 0, 1)
+      cyberpi.led.off(1)
+      time.sleep(float(flash_duration))
+
+@event.is_clockwise
+def on_is_clockwise1():
+    global flash_duration
+    cyberpi.led.off("all")
+    for count2 in range(3):
+      cyberpi.led.on(255, 196, 2, 5)
+      time.sleep(flash_duration)
+      cyberpi.led.on(0, 0, 0, 5)
+      cyberpi.led.off(5)
+      time.sleep(float(flash_duration))
