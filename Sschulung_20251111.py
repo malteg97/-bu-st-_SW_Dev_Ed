@@ -2,43 +2,43 @@
 # codes make you happy
 
 import event, time, cyberpi, mbot2
+# initialize variables
+Batterie = 0
+speed = 0
+flash_duration = 0
+active = 0
 
-# Willkommensgruß
+@event.is_press('middle')
+def is_joy_press():
+    global Batterie, speed, flash_duration, active
+    if active == 0:
+      active = 1
+      mbot2.forward(speed)
+
+    else:
+      active = 0
+      mbot2.forward(0)
+
+@event.is_press('a')
+def is_btn_press():
+    global Batterie, speed, flash_duration, active
+    speed = 50
+    cyberpi.console.println("SLOWMODE")
+
+@event.is_press('b')
+def is_btn_press1():
+    global Batterie, speed, flash_duration, active
+    speed = 100
+    cyberpi.console.println("SPEEDMODE")
+
 @event.start
 def on_start():
-    global Batterie
-    cyberpi.console.println("Willkommen!")
+    global Batterie, speed, flash_duration, active
+    cyberpi.console.set_font(12)
     cyberpi.console.println(cyberpi.get_battery())
-    cyberpi.console.println("Startinstruktionen")
-
-# Fahrtablauf Start
-@event.start
-def on_start():
-    mbot2.forward(50, 3)
-    mbot2.turn(-90)
-    mbot2.forward(50, 3)
-    mbot2.turn(90)
-    mbot2.forward(50, 1)
-
-
-# Richtungsanzeige Blinker links
-@event.is_anticlockwise
-def on_is_anticlockwise():
-    cyberpi.led.off(1)
-    for count in range(3):
-      cyberpi.led.on(255, 187, 2, 1)
-      time.sleep(1)
-      cyberpi.led.on(0, 0, 0, 1)
-      cyberpi.led.off(1)
-      time.sleep(1)
-
-# Richtungsanzeige Blinker rechts
-@event.is_clockwise
-def on_is_clockwise1():
-    cyberpi.led.off(5)
-    for count2 in range(3):
-      cyberpi.led.on(255, 196, 2, 5)
-      time.sleep(1)
-      cyberpi.led.on(0, 0, 0, 5)
-      cyberpi.led.off(5)
-      time.sleep(1)
+    cyberpi.console.println("Tempo bestimmen")
+    cyberpi.console.println("A: Langsam oder B: schnell")
+    speed = 0
+    flash_duration = 0.5
+    active = 0
+    cyberpi.console.println("Druecke den Joystick ein um zu starten.")
