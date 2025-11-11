@@ -7,6 +7,9 @@ Batterie = 0
 speed = 0
 flash_duration = 0
 active = 0
+distance = 0
+Pr_C3_BCfintervall = 0
+rotation = 0
 
 @event.is_press('middle')
 def is_joy_press():
@@ -31,18 +34,6 @@ def is_btn_press1():
     speed = 100
     cyberpi.console.println("SPEEDMODE")
 
-@event.start
-def on_start():
-    global Batterie, speed, flash_duration, active
-    cyberpi.console.set_font(12)
-    cyberpi.console.println(cyberpi.get_battery())
-    cyberpi.console.println("Tempo bestimmen")
-    cyberpi.console.println("A: Langsam oder B: schnell")
-    speed = 0
-    flash_duration = 0.5
-    active = 0
-    cyberpi.console.println("Druecke den Joystick ein um zu starten.")
-
 
 @event.is_anticlockwise
 def on_is_anticlockwise():
@@ -65,3 +56,43 @@ def on_is_clockwise1():
       cyberpi.led.on(0, 0, 0, 5)
       cyberpi.led.off(5)
       time.sleep(float(flash_duration))
+
+@event.start
+def on_start():
+    global Batterie, speed, flash_duration, active, distance, Pr_C3_BCfintervall, rotation
+    cyberpi.console.set_font(12)
+    cyberpi.console.println(cyberpi.get_battery())
+    cyberpi.console.println("Tempo bestimmen")
+    cyberpi.console.println("A: Langsam oder B: schnell")
+    speed = 0
+    flash_duration = 0.5
+    active = 0
+    cyberpi.console.println("Druecke den Joystick ein um zu starten.")
+    distance = 20
+    rotation = 0
+    Pr_C3_BCfintervall = 2
+    speed = 50
+    while True:
+      mbot2.forward(50)
+      if mbuild.ultrasonic2.get(1) < distance:
+        mbot2.turn(90)
+        rotation = rotation + 90
+        mbot2.forward(50)
+        time.sleep(float(Pr_C3_BCfintervall))
+        mbot2.motor_stop("all")
+        mbot2.turn(-90)
+        rotation = rotation + -90
+        if mbuild.ultrasonic2.get(1) < distance:
+          mbot2.turn(90)
+          rotation = rotation + 90
+          mbot2.motor_set(speed,"all")
+
+        else:
+          mbot2.motor_set(speed,"all")
+
+        if mbuild.ultrasonic2.get(1) < distance:
+          mbot2.motor_stop("all")
+          mbot2.turn(-180)
+          rotation = rotation + -180
+          mbot2.motor_set(speed,"all")
+
