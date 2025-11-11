@@ -3,6 +3,7 @@
 
 import event, time, cyberpi, mbot2
 
+# Willkommensgruß
 @event.start
 def on_start():
     global Batterie
@@ -10,7 +11,7 @@ def on_start():
     cyberpi.console.println(cyberpi.get_battery())
     cyberpi.console.println("Startinstruktionen")
 
-
+# Fahrtablauf Start
 @event.start
 def on_start():
     mbot2.forward(50, 3)
@@ -18,3 +19,26 @@ def on_start():
     mbot2.forward(50, 3)
     mbot2.turn(90)
     mbot2.forward(50, 1)
+
+
+# Richtungsanzeige Blinker links
+@event.is_anticlockwise
+def on_is_anticlockwise():
+    cyberpi.led.off(1)
+    for count in range(3):
+      cyberpi.led.on(255, 187, 2, 1)
+      time.sleep(1)
+      cyberpi.led.on(0, 0, 0, 1)
+      cyberpi.led.off(1)
+      time.sleep(1)
+
+# Richtungsanzeige Blinker rechts
+@event.is_clockwise
+def on_is_clockwise1():
+    cyberpi.led.off(5)
+    for count2 in range(3):
+      cyberpi.led.on(255, 196, 2, 5)
+      time.sleep(1)
+      cyberpi.led.on(0, 0, 0, 5)
+      cyberpi.led.off(5)
+      time.sleep(1)
