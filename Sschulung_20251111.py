@@ -8,7 +8,7 @@ speed = 0
 flash_duration = 0
 active = 0
 distance = 0
-Pr_C3_BCfintervall = 0
+pruefintervall = 0
 rotation = 0
 
 @event.is_press('middle')
@@ -59,7 +59,8 @@ def on_is_clockwise1():
 
 @event.start
 def on_start():
-    global Batterie, speed, flash_duration, active, distance, Pr_C3_BCfintervall, rotation
+    #START
+    global Batterie, speed, flash_duration, active, distance, pruefintervall, rotation
     cyberpi.console.set_font(12)
     cyberpi.console.println(cyberpi.get_battery())
     cyberpi.console.println("Tempo bestimmen")
@@ -70,7 +71,7 @@ def on_start():
     cyberpi.console.println("Druecke den Joystick ein um zu starten.")
     distance = 20
     rotation = 0
-    Pr_C3_BCfintervall = 2
+    pruefintervall = 2
     speed = 50
     while True:
       mbot2.forward(50)
@@ -78,7 +79,7 @@ def on_start():
         mbot2.turn(90)
         rotation = rotation + 90
         mbot2.forward(50)
-        time.sleep(float(Pr_C3_BCfintervall))
+        time.sleep(float(pruefintervall))
         mbot2.motor_stop("all")
         mbot2.turn(-90)
         rotation = rotation + -90
@@ -95,4 +96,3 @@ def on_start():
           mbot2.turn(-180)
           rotation = rotation + -180
           mbot2.motor_set(speed,"all")
-
